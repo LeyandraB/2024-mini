@@ -4,7 +4,7 @@
 min_bright = 46000
 max_bright = 2000
 
-##Exercise 2
+## Exercise 2
 We started with the code in exercise_sound.py as a starting point. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for the notes. That was done by finding the sheet music and using the frequency website. 
 Here are the frequencies for the notes 
 ##
