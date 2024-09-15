@@ -30,10 +30,38 @@ duration: float = 0.1  # seconds
 
 print("Playing frequency (Hz):")
 
-for i in range(64):
-    print(freq)
-    playtone(freq, duration)
-    freq = int(freq * 1.1)
+# for i in range(64):
+#    print(freq)
+#    playtone(freq, duration)
+#    freq = int(freq * 1.1)
+
+
+playtone(370,.4)
+playtone(440,.4)
+playtone(554,.5)
+playtone(440,.6)
+playtone(370,.4)
+playtone(294,.3)
+playtone(15,.05)
+playtone(294,.3)
+playtone(15,.05)
+playtone(294,.3)
+
+
+playtone(554,.5)
+playtone(294,.3)
+playtone(370,.4)
+playtone(440,.4)
+playtone(554,.5)
+playtone(440,.4)
+playtone(370,.4)
+playtone(330,.4)
+playtone(311,.4)
+playtone(294,.3)
+
+
+
+
 
 # Turn off the PWM
 quiet()
