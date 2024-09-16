@@ -1,11 +1,12 @@
 # Fall 2024 Mini Project Assignment by Astrid Mihalopoulos and Leyandra Burke
 ## Exercise 1
 1.  what are the "max_bright" and "min_bright" values you found?
-min_bright = 46000
-max_bright = 2000
+   min_bright = 46000
+   max_bright = 2000
 
 ## Exercise 2
 We started with the code in exercise_sound.py as a starting point. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for the notes. That was done by finding the sheet music and using the frequency website. 
+
 Here are the frequencies for the notes 
 ##
 Then we added the following code to play the song. 
@@ -28,20 +29,20 @@ import google.auth
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 
-# Load the service account credentials from JSON file
+#Load the service account credentials from JSON file
 SERVICE_ACCOUNT_FILE = (r"C:\Users\leyan\Downloads\miniprojKey.json")
 
-# Specify the correct scope for Firestore
+#Specify the correct scope for Firestore
 SCOPES = ['https://www.googleapis.com/auth/datastore']
 
-# Create credentials object with the Firestore scope
+#Create credentials object with the Firestore scope
 credentials = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
-# Refresh the token to get a new OAuth 2.0 access token
+#Refresh the token to get a new OAuth 2.0 access token
 credentials.refresh(Request())
 
-# Get the OAuth 2.0 token
+#Get the OAuth 2.0 token
 token = credentials.token
 
 print("OAuth 2.0 Token:", token)
