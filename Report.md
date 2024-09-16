@@ -14,7 +14,7 @@ Then we added the following code to play the song.
 One part is the frequency and the other is the duration the note will play. 
 ####ADD MORE HERE 
 
-#Exercise 3
+## Exercise 3
 We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
 The following code was added 
 ##
@@ -23,8 +23,9 @@ Since we need 10 flashes the variavle N was changed from 3 to 10
 # Upload to the cloud 
 We created a Firebase project. Then we took the following steps Project Settings -> Service Accounts -> Python -> Generate New Private Key
 This JSON file contains the key that the Rasberry Pi Pico can use. 
+
 To extract the key we used the following code. 
-''''''''
+#''''''''
 import google.auth
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
@@ -51,33 +52,34 @@ print("OAuth 2.0 Token:", token)
 After extracting the key we put it in the exercise_game.py
 Then we connected out Pi Pico to the internet using the following code. 
 ''
+
 import time
 import network
 
-def connect_to_internet(ssid, password):
-    # Pass in string arguments for ssid and password
+ssid="Ley"
+password="Password"
 
-    # Just making our internet connection
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    wlan.connect(ssid, password)
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(ssid, password)
 
-    # Wait for connect or fail
-    max_wait = 10
-    while max_wait > 0:
-      if wlan.status() < 0 or wlan.status() >= 3:
+max_wait = 100
+while max_wait > 0:
+    if wlan.status() < 0 or wlan.status() >=3:
+        print(str(wlan.status()))
         break
-      max_wait -= 1
-      print('waiting for connection...')
-      time.sleep(1)
-    # Handle connection error
-    if wlan.status() != 3:
-       raise RuntimeError('network connection failed')
-    else:
-      print('connected')
-      status = wlan.ifconfig()
+    max_wait -= 1
+    print('waiting for connection')
+    time.sleep(1)
 
- # connect_to_internet('<sample_internet_name>', '<sample_internet_password>')
-
-    connect_to_internet('', '')
+ #Handle connection error
+if wlan.status() != 3:
+    raise RuntimeError('network connection failed')
+else:
+    print('connected')
+    status = wlan.ifconfig()
+    print( 'ip = ' + status[0] )
+   
 ''
+
+After that we ran exercise_game.py and the results showed up on the firestore database 
