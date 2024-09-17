@@ -46,39 +46,31 @@ The first part of the function is the frequency and the other is the duration th
 ## Exercise 3
 We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
 The following code was added 
+
+'''python
+  data = {
+        "MinRespTime": min(t_good),
+        "MaxRespTime": max(t_good),
+        "AvgRespTime": (sum(t_good) / len(t_good)),
+        "Score": 1- misses / len(t)
+    }
+
+    print(data)    
+'''
 ##
 Since we need 10 flashes the variavle N was changed from 3 to 10 
 
 # Upload to the cloud 
-We created a Firebase project. Then we took the following steps Project Settings -> Service Accounts -> Python -> Generate New Private Key
-This JSON file contains the key that the Rasberry Pi Pico can use. 
+We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the raspberry pi pico. 
 
-To extract the key we used the following code. 
-```python
-import google.auth
-from google.auth.transport.requests import Request
-from google.oauth2 import service_account
+<p align="center">
+<img src="./assignment/Pic4.png" width="50%">
+</p>
+<p align="center">
+Firebase Realtime Database
+</p>
 
-#Load the service account credentials from JSON file
-SERVICE_ACCOUNT_FILE = (r"C:\Users\leyan\Downloads\miniprojKey.json")
 
-#Specify the correct scope for Firestore
-SCOPES = ['https://www.googleapis.com/auth/datastore']
-
-#Create credentials object with the Firestore scope
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
-#Refresh the token to get a new OAuth 2.0 access token
-credentials.refresh(Request())
-
-#Get the OAuth 2.0 token
-token = credentials.token
-
-print("OAuth 2.0 Token:", token)
-```
-
-After extracting the key we put it in the exercise_game.py
 Then we connected our Pi Pico to the internet using the following code. 
 
 ```python
