@@ -25,7 +25,7 @@ We created a Firebase project. Then we took the following steps Project Settings
 This JSON file contains the key that the Rasberry Pi Pico can use. 
 
 To extract the key we used the following code. 
-#''''''''
+```python
 import google.auth
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
@@ -47,12 +47,12 @@ credentials.refresh(Request())
 token = credentials.token
 
 print("OAuth 2.0 Token:", token)
-'''
+```
 
 After extracting the key we put it in the exercise_game.py
-Then we connected out Pi Pico to the internet using the following code. 
-''
+Then we connected our Pi Pico to the internet using the following code. 
 
+```python
 import time
 import network
 
@@ -79,7 +79,6 @@ else:
     print('connected')
     status = wlan.ifconfig()
     print( 'ip = ' + status[0] )
-   
-''
+```
 
 After that we ran exercise_game.py and the results showed up on the firestore database 
