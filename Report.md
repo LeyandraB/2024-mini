@@ -9,10 +9,32 @@ We started with the code in exercise_sound.py as a starting point. We decided to
 
 Here are the frequencies for the notes 
 ##
-Then we added the following code to play the song. 
-##
-One part is the frequency and the other is the duration the note will play. 
-####ADD MORE HERE 
+Then we added the following code to play the song. We used the already existing playtone function. 
+```python
+playtone(370,.4)
+playtone(440,.4)
+playtone(554,.5)
+playtone(440,.6)
+playtone(370,.4)
+playtone(294,.3)
+playtone(15,.05)
+playtone(294,.3)
+playtone(15,.05)
+playtone(294,.3)
+
+
+playtone(554,.5)
+playtone(294,.3)
+playtone(370,.4)
+playtone(440,.4)
+playtone(554,.5)
+playtone(440,.4)
+playtone(370,.4)
+playtone(330,.4)
+playtone(311,.4)
+playtone(294,.3)
+```
+The first part of the function is the frequency and the other is the duration the note will play. 
 
 ## Exercise 3
 We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
