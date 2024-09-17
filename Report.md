@@ -62,13 +62,16 @@ The following code was added
 Since we need 10 flashes the variavle N was changed from 3 to 10 
 
 # Upload to the cloud 
-We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the raspberry pi pico. 
+We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the Raspberry Pi Pico. 
 
 <p align="center">
 <img src="./assignment/Pic4.png" width="50%">
 </p>
 <p align="center">
 Firebase Realtime Database
+</p> 
+<p>
+   
 </p>
 
 
@@ -79,7 +82,7 @@ import time
 import network
 
 ssid="Ley"
-password="Password"
+password="Password" # Password Redacted
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
@@ -101,6 +104,15 @@ else:
     print('connected')
     status = wlan.ifconfig()
     print( 'ip = ' + status[0] )
+```
+
+We then combined the internet code with the excercise_game.py code so everytime it ran it would ensure that it was connected to the internet. 
+
+Then after importing the urequests module we added the following code to send the data to the database.
+
+```python
+request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
+print(request.text) #Prints what was sent
 ```
 
 After that we ran exercise_game.py and the results showed up on the firestore database 
