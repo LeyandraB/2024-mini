@@ -47,7 +47,7 @@ The first part of the function is the frequency and the other is the duration th
 We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
 The following code was added 
 
-'''python
+```python
   data = {
         "MinRespTime": min(t_good),
         "MaxRespTime": max(t_good),
@@ -56,7 +56,8 @@ The following code was added
     }
 
     print(data)    
-'''
+```
+
 ##
 Since we need 10 flashes the variavle N was changed from 3 to 10 
 
