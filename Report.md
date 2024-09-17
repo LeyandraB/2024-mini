@@ -108,11 +108,19 @@ else:
 
 We then combined the internet code with the excercise_game.py code so everytime it ran it would ensure that it was connected to the internet. 
 
-Then after importing the urequests module we added the following code to send the data to the database.
+Then after importing the urequests module we added the following code to send the data to the database. 
+
+First by getting the reference url from the database and putting it as a global variable.
 
 ```python
+DB_url = "https://miniproject-7042f-default-rtdb.firebaseio.com/"
+```
+Then adding this code into the write_json function.
+```python
+jason = json.dumps(data)
+
 request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
 print(request.text) #Prints what was sent
 ```
 
-After that we ran exercise_game.py and the results showed up on the firestore database 
+We were then able to run exercise_game.py and the results showed up on the firestore database 
