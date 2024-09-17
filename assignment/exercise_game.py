@@ -6,11 +6,16 @@ from machine import Pin
 import time
 import random
 import json
+import sys
+import urequests
+import network
 
 
 N: int = 10 # Changed from 3 to 10 to run 10 cycles
 sample_ms = 10.0
 on_ms = 500
+
+DB_url = "https://miniproject-7042f-default-rtdb.firebaseio.com/"
 
 
 def random_time_interval(tmin: float, tmax: float) -> float:
@@ -29,6 +34,8 @@ def blinker(N: int, led: Pin) -> None:
 
 
 def write_json(json_filename: str, data: dict) -> None:
+    jason = json.dumps(data)
+    
     """Writes data to a JSON file.
 
     Parameters
@@ -40,6 +47,9 @@ def write_json(json_filename: str, data: dict) -> None:
     data: dict
         Dictionary data to write to the file.
     """
+    request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
+    print(request.text)
+    
 
     with open(json_filename, "w") as f:
         json.dump(data, f)
@@ -54,7 +64,6 @@ def scorer(t: list[int | None]) -> None:
 
     print(t_good)
     
-    oauth_token = "ya29.c.c0ASRK0GbKCZpCudtNl5nwt453RIDiI-MRdg0sIVDDdFXdF5pp8CC3C_HJvCZQLclz4hrzUtb62p1sDqBj4Y2Nk1VXEEI0iCGla62v5Atb02hgMbn461GgEEYlD6V7hUSg1PWDvS7T5NfikSrQdK32e7OhmtRfv42cBIWXBzc8gTXRjeh3VMZR7XRLVy53m91Pf5HtljQxqq8dpW9zQqnGdaOSkaN1BtVbmnYn1KBhzb-k5nKI6glzHfhfgQTPh4_Lv_opog5QW1q5zUF1tUR8YAVuUVLayRPgUzX09T8b4_-l-LdN6DoZuXOAuGo0IfM5cloW7qwpX1-eAhKbW9Bw53bmKAJb0YVuZOXjGKLOw1RVNv4yf9dQybe0N385P_fZIcZ75uUo1ws_c8ebIkpX4pwR6XWkzXrUV4kV2xejmY10XWdxujS513XcuOu91h2O-o6i--zjdRo_ccp0nuUOnS33yrunXkFoQxxZUiaWiVU1BwX16nikR5mpXQp1JWFMSfRq5XbQ21obay26S16f-0dzi2jJSQwietoJ2l3Vve9gckQm0bVSb9pR-mcJMQRI48kxJdwdWx4k5ObajvogsQafmxacMtol46nYd1stsQxbfUaXvy0Rt5eU9W1kB4aWOYJyW8kp2Ozo6rd3dUy11mraJQr_IyhFJ6Mcx-m_6c8tg4_cUeVjjgczf9fnpncdbgJv8q2m4ZUdX0Ymtjrltf-rRn7jxqjd99m6gJXUi-fc0-I_SZnxjQeahtcaktRYxzuSjW1BVwo7z--SJ-5isZjnO4_k27Wm-i4QXdbh9BU0nc-vY041hkt8F1zlqdBjrbeo-XdI3RYiOZscFupb3o6pRqfSZ4a86RRtx8amMOeQWIcM_X58Ve4SgpxMtrSZ-vS6xYpfptIJ_V9ZS2wnXbX-QRIWd5rXb3mV0nmx-fu5Q_nWqiQJ4nsxupn3Xh70jkoscUicgeZcZI660o36FB_bXdmdd3jlutgb9347osqVZpkiFJId6fn"
     # add key, value to this dict to store the minimum, maximum, average response time
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
@@ -66,6 +75,7 @@ def scorer(t: list[int | None]) -> None:
     }
 
     # %% make dynamic filename and write JSON
+    print(data)
 
     now: tuple[int] = time.localtime()
 
@@ -75,11 +85,39 @@ def scorer(t: list[int | None]) -> None:
     print("write", filename)
 
     write_json(filename, data)
+    
+def connect():
+    ssid="Ley"
+    password="BlueBlackPurple"
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect(ssid, password)
 
+    max_wait = 100
+    while max_wait > 0:
+        if wlan.status() < 0 or wlan.status() >=3:
+            print(str(wlan.status()))
+            break
+        max_wait -= 1
+        print('waiting for connection')
+        time.sleep(1)
+
+     # Handle connection error
+    if wlan.status() != 3:
+        raise RuntimeError('network connection failed')
+    else:
+        print('connected')
+        status = wlan.ifconfig()
+        print( 'ip = ' + status[0] )
+
+        
+               
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
+    connect() #Make sure its connected to the internet
+    
     led = Pin("LED", Pin.OUT)
     button = Pin(16, Pin.IN, Pin.PULL_UP)
 
@@ -106,3 +144,7 @@ if __name__ == "__main__":
     blinker(5, led)
 
     scorer(t)
+
+
+
+
