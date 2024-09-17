@@ -5,7 +5,14 @@
    max_bright = 2000
 
 ## Exercise 2
-We started with the code in exercise_sound.py as a starting point. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for the notes. That was done by finding the sheet music and using the frequency website. 
+We started with the code in exercise_sound.py as a starting point. The original code had tones that descended for a set amount of time. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for each of the notes. That was done by finding the sheet music and matching the frequency to the note using the provided frequency website.
+
+<p align="center">
+<img src="./assignment/Pic5.png" width="50%">
+</p>
+<p align="center">
+Sheet Music Used for "Mii Song"
+</p>
 
 Here are the frequencies for the notes 
 ##
