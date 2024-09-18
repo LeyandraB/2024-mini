@@ -122,13 +122,18 @@ jason = json.dumps(data)
 request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
 print(request.text) #Prints what was sent
 ```
-<p align="left">
-<img src="./doc/Pic2.png" width="50%">
-   <align="right">
-<img src="./doc/Pic3.png" width="50%">
-</p>
 
 <p align="center">
-Data Output from Thonny Shell and Data Transferred to Firebase Cloud
+<img src="./doc/Pic2.png" width="50%">
+</p>
+<p align="center">
+Data Output from Thonny Shell 
+</p> 
+
+<p align="center">
+<img src="./doc/Pic3.png" width="50%">
+</p>
+<p align="center">
+Identical Data Transferred to Firebase Cloud
 </p> 
 
