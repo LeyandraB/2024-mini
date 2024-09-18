@@ -25,3 +25,4 @@ else:
     print('connected')
     status = wlan.ifconfig()
     print( 'ip = ' + status[0] )
+
