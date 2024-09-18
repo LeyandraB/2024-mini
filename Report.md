@@ -8,7 +8,7 @@
 We started with the code in exercise_sound.py as a starting point. The original code had tones that descended for a set amount of time. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for each of the notes. That was done by finding the sheet music and matching the frequency to the note using the provided frequency website.
 
 <p align="center">
-<img src="./assignment/Pic5.jpeg" width="50%">
+<img src="./doc/Pic5.jpeg" width="50%">
 </p>
 <p align="center">
 Sheet Music Used for "Mii Song"
@@ -65,7 +65,7 @@ Since we need 10 flashes the variavle N was changed from 3 to 10
 We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the Raspberry Pi Pico. 
 
 <p align="center">
-<img src="./assignment/Pic4.png" width="50%">
+<img src="./doc/Pic4.png" width="50%">
 </p>
 <p align="center">
 Firebase Realtime Database
