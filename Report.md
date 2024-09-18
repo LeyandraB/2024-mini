@@ -14,8 +14,7 @@ We started with the code in exercise_sound.py as a starting point. The original 
 Sheet Music Used for "Mii Song"
 </p>
 
-Here are the frequencies for the notes 
-##
+
 Then we added the following code to play the song. We used the already existing playtone function. 
 ```python
 playtone(370,.4)
@@ -41,10 +40,16 @@ playtone(330,.4)
 playtone(311,.4)
 playtone(294,.3)
 ```
-The first part of the function is the frequency and the other is the duration the note will play. 
+The first argument of the function is the frequency and the second is the duration the note will play. 
 
 ## Exercise 3
-We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
+
+To begin we changed the variable N from 3 to 10 to get 10 led flashes.
+```python
+N: int = 10 # Changed from 3 to 10 to run 10 cycles
+```
+
+Then edited the exercise_game.py code to calculate minimum, maximum and average response times. 
 The following code was added 
 
 ```python
@@ -57,9 +62,6 @@ The following code was added
 
     print(data)    
 ```
-
-##
-Since we need 10 flashes the variavle N was changed from 3 to 10 
 
 # Upload to the cloud 
 We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the Raspberry Pi Pico. 
@@ -75,7 +77,7 @@ Firebase Realtime Database
 </p>
 
 
-Then we connected our Pi Pico to the internet using the following code. 
+We were then able to connect our Pi Pico to the internet using the following code. 
 
 ```python
 import time
@@ -106,7 +108,7 @@ else:
     print( 'ip = ' + status[0] )
 ```
 
-We then combined the internet code with the excercise_game.py code so everytime it ran it would ensure that it was connected to the internet. 
+We then combined the internet code with the excercise_game.py code so everytime it ran it would check that it was connected to the internet. 
 
 Then after importing the urequests module we added the following code to send the data to the database. 
 
@@ -115,7 +117,7 @@ First by getting the reference url from the database and putting it as a global 
 ```python
 DB_url = "https://miniproject-7042f-default-rtdb.firebaseio.com/"
 ```
-Then adding this code into the write_json function which stores the JSON data directly into a file. Then uses the urequests module to send the data to the database and if it worked should print out the data sent.
+Then adding this code into the write_json function which stores the JSON data directly into a file. Then uses the urequests module to send the data to the database, and if it worked prints out the data sent.
 ```python
 jason = json.dumps(data)
 
