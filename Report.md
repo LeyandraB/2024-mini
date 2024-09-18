@@ -124,6 +124,7 @@ print(request.text) #Prints what was sent
 ```
 <p align="left">
 <img src="./doc/Pic2.png" width="50%">
+   <align="right">
 <img src="./doc/Pic3.png" width="50%">
 </p>
 
