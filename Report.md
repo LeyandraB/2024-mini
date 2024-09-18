@@ -5,7 +5,14 @@
    max_bright = 2000
 
 ## Exercise 2
-We started with the code in exercise_sound.py as a starting point. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for the notes. That was done by finding the sheet music and using the frequency website. 
+We started with the code in exercise_sound.py as a starting point. The original code had tones that descended for a set amount of time. We decided to play the Wii Theme music or the "Mii Song". We first found the frequency for each of the notes. That was done by finding the sheet music and matching the frequency to the note using the provided frequency website.
+
+<p align="center">
+<img src="./assignment/Pic5.jpeg" width="50%">
+</p>
+<p align="center">
+Sheet Music Used for "Mii Song"
+</p>
 
 Here are the frequencies for the notes 
 ##
@@ -39,39 +46,35 @@ The first part of the function is the frequency and the other is the duration th
 ## Exercise 3
 We edited the exercise_game.py code to calculate minimum, maximum and average response times. The following code was added 
 The following code was added 
+
+```python
+  data = {
+        "MinRespTime": min(t_good),
+        "MaxRespTime": max(t_good),
+        "AvgRespTime": (sum(t_good) / len(t_good)),
+        "Score": 1- misses / len(t)
+    }
+
+    print(data)    
+```
+
 ##
 Since we need 10 flashes the variavle N was changed from 3 to 10 
 
 # Upload to the cloud 
-We created a Firebase project. Then we took the following steps Project Settings -> Service Accounts -> Python -> Generate New Private Key
-This JSON file contains the key that the Rasberry Pi Pico can use. 
+We decided to use Firebase to upload our data to the cloud. First we created a Firebase project. We then made a realtime database that would recieve the data in the form of a JSON file from the Raspberry Pi Pico. 
 
-To extract the key we used the following code. 
-```python
-import google.auth
-from google.auth.transport.requests import Request
-from google.oauth2 import service_account
+<p align="center">
+<img src="./assignment/Pic4.png" width="50%">
+</p>
+<p align="center">
+Firebase Realtime Database
+</p> 
+<p>
+   
+</p>
 
-#Load the service account credentials from JSON file
-SERVICE_ACCOUNT_FILE = (r"C:\Users\leyan\Downloads\miniprojKey.json")
 
-#Specify the correct scope for Firestore
-SCOPES = ['https://www.googleapis.com/auth/datastore']
-
-#Create credentials object with the Firestore scope
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
-#Refresh the token to get a new OAuth 2.0 access token
-credentials.refresh(Request())
-
-#Get the OAuth 2.0 token
-token = credentials.token
-
-print("OAuth 2.0 Token:", token)
-```
-
-After extracting the key we put it in the exercise_game.py
 Then we connected our Pi Pico to the internet using the following code. 
 
 ```python
@@ -79,7 +82,7 @@ import time
 import network
 
 ssid="Ley"
-password="Password"
+password="Password" # Password Redacted
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
@@ -103,4 +106,21 @@ else:
     print( 'ip = ' + status[0] )
 ```
 
-After that we ran exercise_game.py and the results showed up on the firestore database 
+We then combined the internet code with the excercise_game.py code so everytime it ran it would ensure that it was connected to the internet. 
+
+Then after importing the urequests module we added the following code to send the data to the database. 
+
+First by getting the reference url from the database and putting it as a global variable.
+
+```python
+DB_url = "https://miniproject-7042f-default-rtdb.firebaseio.com/"
+```
+Then adding this code into the write_json function.
+```python
+jason = json.dumps(data)
+
+request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
+print(request.text) #Prints what was sent
+```
+
+We were then able to run exercise_game.py and the results showed up on the firestore database 

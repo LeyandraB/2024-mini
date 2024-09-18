@@ -88,7 +88,7 @@ def scorer(t: list[int | None]) -> None:
     
 def connect():  #Checks for connection or connects
     ssid="Ley"
-    password="BlueBlackPurple"
+    password="Password" # Password Redacted
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     wlan.connect(ssid, password)

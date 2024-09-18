@@ -3,7 +3,7 @@ import time
 import network
 
 ssid="Ley"
-password="BlueBlackPurple"
+password="Password"
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
