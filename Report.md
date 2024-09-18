@@ -115,12 +115,19 @@ First by getting the reference url from the database and putting it as a global 
 ```python
 DB_url = "https://miniproject-7042f-default-rtdb.firebaseio.com/"
 ```
-Then adding this code into the write_json function.
+Then adding this code into the write_json function which stores the JSON data directly into a file. Then uses the urequests module to send the data to the database and if it worked should print out the data sent.
 ```python
 jason = json.dumps(data)
 
 request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
 print(request.text) #Prints what was sent
 ```
+<p align="left">
+<img src="./doc/Pic2.png" width="50%">
+<img src="./doc/Pic3.png" width="50%">
+</p>
 
-We were then able to run exercise_game.py and the results showed up on the firestore database 
+<p align="center">
+Data Output from Thonny Shell and Data Transferred to Firebase Cloud
+</p> 
+
