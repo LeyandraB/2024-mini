@@ -144,7 +144,3 @@ if __name__ == "__main__":
     blinker(5, led)
 
     scorer(t)
-
-
-
-
