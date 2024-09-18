@@ -48,7 +48,7 @@ def write_json(json_filename: str, data: dict) -> None:
         Dictionary data to write to the file.
     """
     request = urequests.put(DB_url + json_filename, headers = {}, data = jason)  #Sends file 
-    print(request.text)
+    print(request.text) #Prints what was sent
     
 
     with open(json_filename, "w") as f:
@@ -86,7 +86,7 @@ def scorer(t: list[int | None]) -> None:
 
     write_json(filename, data)
     
-def connect():
+def connect():  #Checks for connection or connects
     ssid="Ley"
     password="BlueBlackPurple"
     wlan = network.WLAN(network.STA_IF)
