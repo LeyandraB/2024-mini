@@ -133,7 +133,7 @@ Data Output from Thonny Shell
 </p> 
 
 <p align="center">
-<img src="./doc/Pic3.png" width="50%">
+<img src="./doc/Pic3.png" width="30%">
 </p>
 <p align="center">
 Identical Data Transferred to Firebase Cloud
